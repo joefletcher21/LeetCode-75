@@ -12,15 +12,15 @@ class Solution:
                 results.append(product/i)
         elif nums.count(0) > 1:
             for i in nums:
-                results.append(0)
-        elif nums.count(1) + nums.count(-1) == len(nums):
-            
+                results.append(0)  
         else:    
-            while start < len(nums):
-                for i in range(len(nums)):
-                    if start is not i:
-                        product = product * nums[i]
-                results.append(product)
-                product = 1
-                start += 1
+            results = [1] * len(nums)
+            for i in range(len(nums)):
+                results[i] = results[i] * product
+                product = product * nums[i]
+            product = 1
+            for i in range(len(nums)-1,-1,-1):
+                results[i] = results[i] * product
+                product = product * nums[i]
+            
         return results
