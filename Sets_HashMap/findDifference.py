@@ -1,12 +1,12 @@
 class Solution:
     def findDifference(self, nums1: List[int], nums2: List[int]) -> List[List[int]]:
-        num1 = dict()
-        num2 = dict()
-        size = max(len(nums1), len(nums2))
-        for i in range(size):
-            if len(nums1) > i and nums1[i] not in nums2:
-                num1[nums1[i]] = 1
-            if len(nums2) > i and nums2[i] not in nums1:
-                num2[nums2[i]] = 1
+        s1, s2 = set(nums1), set(nums2)
+        results = [[], []]
+        for i in s1:
+            if i not in s2:
+                results[0].append(i)
+        for i in s2:
+            if i not in s1:
+                results[1].append(i)
 
-        return list(num1.keys()), list(num2.keys())
+        return results
